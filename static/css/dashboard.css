@@ -1,0 +1,20 @@
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+#wrapper #sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: 0;
+    overflow-x: hidden;
+    transition: all 0.5s ease;
+    width: 250px;
+}
+
+#wrapper #page-content-wrapper {
+    width: 100%;
+    transition: all 0.5s ease;
+}
+
+.table {
+    margin-top: 20px;
+}

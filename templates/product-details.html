@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AfricArt || Productdet</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Offcanvas Menu Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__close">+</div>
+    <ul class="offcanvas__widget">
+        <li><span class="icon_search search-switch"></span></li>
+        <li class="auth-only" style="display: none;">
+            <a href="#"><span class="icon_heart_alt"></span>
+                <div class="tip">2</div>
+            </a>
+        </li>
+
+
+
+
+        <li class="auth-only" style="display: none;">
+            <a href="/shop-cart" id="cart-icon">
+                <span class="icon_bag_alt"></span>
+                <div class="tip" id="cart-count">0</div>
+            </a>
+        </li>
+
+
+    </ul>
+    <div class="offcanvas__logo">
+        <a href="./"><img src="/static/img/logo.png" alt="Logo"></a>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+    <div class="offcanvas__auth">
+        <a href="./login" id="login-link-offcanvas">Login</a>
+        <a href="./signup" id="register-link-offcanvas">Register</a>
+        <span class="user-details-offcanvas" style="display: none;">
+            <i class="fa fa-user-circle"></i>
+            <span id="user-name-offcanvas" style="font-weight: bold;">User</span>
+        </span>
+    </div>
+</div>
+<!-- Offcanvas Menu End -->
+
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-3 col-lg-2">
+                <div class="header__logo">
+                    <a href="./"><img src="/static/img/logo.png" alt="Logo"></a>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7">
+                <nav class="header__menu">
+                    <ul>
+                        <li class="active"><a href="./">Home</a></li>
+                        <li><a href="./shop">Shop</a></li>
+                        <li><a href="./blog">Blog</a></li>
+                        <li><a href="./contact">Contact</a></li>
+                        <li class="user-details" style="display: none;">
+                            <a href="#" id="user-name-header">Welcome, User</a>
+                            <ul class="dropdown">
+                                <li><a href="./profile">Profile</a></li>
+                                <li><a href="/logout" id="logout-link">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="header__right">
+                    <ul class="header__right__widget">
+                        <li><span class="icon_search search-switch"></span></li>
+                        <li class="auth-only" style="display: none;">
+                            <a href="#"><span class="icon_heart_alt"></span>
+                                <div class="tip">2</div>
+                            </a>
+                        </li>
+
+                        <li class="auth-only" style="display: none;">
+                            <a href="/shop-cart" id="cart-icon">
+                                <span class="icon_bag_alt"></span>
+                                <div class="tip" id="cart-count">0</div>
+                            </a>
+                        </li>
+                        
+                        <li class="auth-only  user-details" style="display: none;">
+                            <a href="./dashboard" id="cart-icon">
+                                <span class="fa fa-user-circle"></span>
+                                <span id="user-name-header" style="font-size: 16px; margin-right:8px;">Account</span>
+                                
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="header__right__auth">
+                        <a href="./login" id="login-link">Login</a>
+                        <a href="./signup" id="register-link">Register</a>
+                        <span class="user-details" style="display: none;">
+                            <i class="fa fa-user-circle" style="font-size: 18px; margin-right: 8px;"></i>
+                            <span id="user-name-header" style="font-weight: bold;">User</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</header>
+<!-- Header Section End -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const cartCountElement = document.getElementById("cart-count");
+        const cartIcon = document.getElementById("cart-icon");
+    
+        // Retrieve cart data from localStorage
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        // Calculate the total quantity of items in the cart
+        const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+        // Update the cart count badge
+        cartCountElement.textContent = totalQuantity;
+    
+        // Redirect to shop-cart page when cart icon is clicked
+        cartIcon.addEventListener("click", (event) => {
+            event.preventDefault();
+    
+            const authToken = localStorage.getItem("authToken");
+            if (!authToken) {
+                alert("Please log in to view your cart!");
+                window.location.href = "/login.html"; // Redirect to login page
+            } else {
+                window.location.href = "/shop-cart"; // Redirect to cart page
+            }
+        });
+    });
+    
+
+    
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Simulated user authentication from localStorage
+        const authToken = localStorage.getItem("authToken");
+        const userName = localStorage.getItem("userName") || "User";
+
+        // Header elements
+        const userDetails = document.querySelector(".user-details");
+        const userNameHeader = document.getElementById("user-name-header");
+        const loginLink = document.getElementById("login-link");
+        const registerLink = document.getElementById("register-link");
+        const logoutLink = document.getElementById("logout-link");
+
+        // Offcanvas elements
+        const userDetailsOffcanvas = document.querySelector(".user-details-offcanvas");
+        const userNameOffcanvas = document.getElementById("user-name-offcanvas");
+        const loginLinkOffcanvas = document.getElementById("login-link-offcanvas");
+        const registerLinkOffcanvas = document.getElementById("register-link-offcanvas");
+
+        // Auth-only elements
+        const authOnlyElements = document.querySelectorAll(".auth-only");
+
+        if (authToken) {
+            // Hide login and register links
+            loginLink.style.display = "none";
+            registerLink.style.display = "none";
+            loginLinkOffcanvas.style.display = "none";
+            registerLinkOffcanvas.style.display = "none";
+
+            // Show user details
+            userDetails.style.display = "inline-block";
+            userNameHeader.textContent = `Welcome, ${userName}`;
+            userDetailsOffcanvas.style.display = "inline-block";
+            userNameOffcanvas.textContent = userName;
+
+            // Show auth-only elements
+            authOnlyElements.forEach((el) => (el.style.display = "inline-block"));
+
+            // Handle logout
+            logoutLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                localStorage.removeItem("authToken"); // Remove authentication token
+                localStorage.removeItem("userName"); // Remove user details
+                window.location.href = "./login.html"; // Redirect to login page
+            });
+        } else {
+            // Hide user details and auth-only elements if not logged in
+            userDetails.style.display = "none";
+            userDetailsOffcanvas.style.display = "none";
+            authOnlyElements.forEach((el) => (el.style.display = "none"));
+        }
+    });
+</script>
+
+    
+
+    <!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                    <a href="#" id="breadcrumb-category">Category</a>
+                    <span id="breadcrumb-name">Product Name</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product__details__pic">
+                    <div class="product__details__slider__content">
+                        <div class="product__details__pic__slider owl-carousel" id="product-images">
+                            <!-- Product images will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product__details__text">
+                    <h3 id="product-name">Product Name</h3>
+                    <span id="product-brand">Brand: </span>
+                    <div class="product__details__price" id="product-price">$0.0</div>
+                    <p id="product-description">Product description goes here.</p>
+                    <ul id="product-reviews">
+                        <!-- Reviews will be inserted here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="related__title">
+                    <h5>RELATED PRODUCTS</h5>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const getQueryParam = (param) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        };
+
+        const customId = getQueryParam("id");
+        if (customId) {
+            fetch(`http://127.0.0.1:8000/api/products/${customId}`)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch product details");
+                    }
+                    return response.json();
+                })
+                .then((product) => {
+                    // Update product details
+                    document.querySelector(".product__details__text h3").textContent = product.name || "Unknown Product";
+                    document.querySelector(".product__details__price").textContent = `$${product.price ? product.price.toFixed(2) : "0.00"}`;
+                    document.querySelector(".product__details__text p").textContent = product.description || "No description available.";
+
+                    const imageSlider = document.querySelector(".product__details__pic__slider");
+                    if (Array.isArray(product.images) && product.images.length > 0) {
+                        product.images.forEach((image, index) => {
+                            const imgTag = `<img data-hash="product-${index}" class="product__big__img" src="${image}" alt="${product.name || "Image"}">`;
+                            imageSlider.innerHTML += imgTag;
+                        });
+                    } else {
+                        imageSlider.innerHTML = "<p>No images available.</p>";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    document.querySelector(".product-details").innerHTML = "<h1>Product not found.</h1>";
+                });
+        } else {
+            console.error("Product ID is missing in the URL.");
+            document.querySelector(".product-details").innerHTML = "<h1>Invalid Product.</h1>";
+        }
+    });
+</script>
+
+
+
+    {% comment %} <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            console.log("Query String:", window.location.search);
+            return urlParams.get(param); // Retrieves the value of the specified parameter
+        }
+        
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const customId = getQueryParam("id");
+            console.log(`Extracted Product ID: ${customId}`);
+
+            if (customId) {
+
+                fetch(`http://127.0.0.1:8000/api/products?custom_id=${customId}`)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch product details");
+                    }
+                    return response.json();
+                })
+                .then((products) => {
+                    if (products.length === 0) {
+                        throw new Error("No product found");
+                    }
+            
+                    const product = products[0]; // Get the first product from the response
+            
+                    // Update breadcrumb dynamically
+                    document.getElementById("breadcrumb-category").textContent = product.category;
+                    document.getElementById("breadcrumb-category").href = `/shop.html?category=${encodeURIComponent(product.category)}`;
+                    document.getElementById("breadcrumb-name").textContent = product.name;
+            
+                    document.getElementById("product-name").textContent = product.name;
+                    document.getElementById("product-brand").textContent = `Brand: ${product.brand}`;
+                    document.getElementById("product-price").textContent = `$${product.price.toFixed(2)}`;
+                    document.getElementById("product-description").textContent = product.description;
+            
+                    // Update images
+                    const imagesContainer = document.getElementById("product-images");
+                    imagesContainer.innerHTML = product.images
+                        .map((img) => `<img src="${img}" alt="Product Image" class="product__big__img">`)
+                        .join("");
+            
+                    // Update reviews
+                    const reviewsContainer = document.getElementById("product-reviews");
+                    if (product.reviews.length === 0) {
+                        reviewsContainer.innerHTML = "<p>No reviews yet.</p>";
+                    } else {
+                        reviewsContainer.innerHTML = product.reviews
+                            .map(
+                                (review) => `
+                                <li>
+                                    <strong>${review.user_email}</strong>
+                                    <p>Rating: ${"★".repeat(review.rating)}</p>
+                                    <p>${review.comment}</p>
+                                </li>`
+                            )
+                            .join("");
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    document.body.innerHTML = "<h1>Product not found.</h1>";
+                });
+
+            } else {
+                // Handle case where no product ID is found in the URL
+                console.log(" ID is missing in the URL.");
+            }
+        });
+   
+        
+        fetch(`http://127.0.0.1:8000/api/products?category=${product.category}`)
+        .then((response) => response.json())
+        .then((relatedProducts) => {
+            const relatedContainer = document.querySelector(".related__title");
+            relatedContainer.innerHTML = relatedProducts
+                .map(
+                    (related) => `
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" style="background-image: url('${related.images[0]}');">
+                            <ul class="product__hover">
+                                <li><a href="product-details.html?id=${related._id}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="product-details.html?id=${related._id}">${related.name}</a></h6>
+                            <div class="product__price">$${related.price}</div>
+                        </div>
+                    </div>
+                </div>`
+                )
+                .join("");
+        });
+    
+        
+
+
+
+    </script> {% endcomment %}
+    <!-- Product Details Section End -->
+
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/static/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ AfricArt_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/static/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ AfricArt_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/static/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ AfricArt_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/static/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ AfricArt_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/static/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ AfricArt_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/static/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ AfricArt_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        cilisis.</p>
+                        <div class="footer__payment">
+                            <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
+                            <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
+                            <a href="#"><img src="img/payment/payment-3.png" alt=""></a>
+                            <a href="#"><img src="img/payment/payment-4.png" alt=""></a>
+                            <a href="#"><img src="img/payment/payment-5.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Blogs</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Orders Tracking</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/jquery-ui.min.js"></script>
+    <script src="/static/js/mixitup.min.js"></script>
+    <script src="/static/js/jquery.countdown.min.js"></script>
+    <script src="/static/js/jquery.slicknav.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/jquery.nicescroll.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
